@@ -1,0 +1,92 @@
+/* Css File */
+*{
+	margin:0;
+	padding:0;
+}
+
+body{
+	font-family: "Helvetica Neue",Arial,Helvetica,sans-serif;
+}
+
+#wrap{
+	width:900px;
+	margin:10px auto;
+}
+
+#block1{
+	background:#fff;
+	min-height:400px;
+	position: absolute;
+	top:10%;
+	width:100%;
+}
+
+#blocks{
+	display:block;
+	position: relative;
+}
+
+#blocks li{
+	list-style-type: none;
+	clear:both;
+}
+
+.text-title{
+	font-size:32px;
+	font-weight:600;
+}
+
+.steps{
+	font-size:24px;
+	color:#DFDFDF;
+	padding-left:10px;
+}
+
+.cycle{
+	background:url("../images/cycle.jpg") no-repeat;
+	
+}
+
+.cycle:hover{
+	background:url("../images/cycle_hover.jpg") no-repeat;
+}
+
+.bike{
+	background:url("../images/bike.jpg") no-repeat;
+	
+}
+
+.bike:hover{
+	background:url("../images/bike_hover.jpg") no-repeat;
+}
+
+.car{
+	background:url("../images/car.jpg") no-repeat;
+	
+}
+
+.car:hover{
+	background:url("../images/car_hover.jpg") no-repeat;
+}
+
+#typeselection{
+	margin-top:20px;
+	margin-left: 13%;
+	display:block;
+}
+
+#typeselection li{
+	cursor: pointer;
+	float:left;
+	margin-right:20px;
+	list-style-type: none;
+	width:200px;
+	height:200px;
+}
+
+#typeselection li:last{
+	margin-right:0px;
+}
+
+
+
