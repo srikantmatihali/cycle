@@ -1,0 +1,407 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Bike Vs Cycle</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<style>
+
+</style>
+<body>
+<!--wrapper starts-->
+<div id="wrapper">
+
+	<?php ?><div id="first-container">
+		<!--left box starts-->
+		<div id="data-collect"  >
+		
+		<form id="form1">
+		<div  style="">			
+			<div>
+				<label><strong>Distance (km/Per Day)</strong></label><input type="text" name="total_distance" id="total_distance" value="140" onkeypress="return isNumberKey(event)" />								
+			</div><br/>
+			
+			<!--comparison-->
+			<div>
+				<table>
+				<tr style="background-color:#6199DF;color:white">
+					<td class="tableHeading"><label >Vehicle</label></td>
+					<td class="tableHeading"><label >Fuel Efficiency(km/litre)</label></td>
+					<td class="tableHeading"><label >Time Taken (HH:MM:SS)<label></td>					
+				</tr>
+				
+				<tr>
+					<td class=""><label >CYCLE</label></td>
+					<td ><input type="text" name="cy_fuel" id="cy_fuel" value="0" onkeypress="return isNumberKey(event)" onkeypress="return isNumberKey(event)"  /></td>
+					<td >
+						 <input type="text" name="cy_time_hr"  id="cy_time_hr" value="07" class="time_field" onkeypress="return isNumberKey(event)"  /> :
+						 <input type="text" name="cy_time_min"  id="cy_time_min" value="00" maxlength="2" class="time_field" onkeypress="return isNumberKey(event)" onchange="this.value = validateTextNumericInRange(this.name, 0, 59)" /> :
+						 <input type="text" name="cy_time_sec"  id="cy_time_sec" value="00" maxlength="2" class="time_field" onkeypress="return isNumberKey(event)" onchange="this.value = validateTextNumericInRange(this.name, 0, 59)" />			
+					</td>					
+				</tr>
+				
+				<tr style="background-color:#E5ECF9">
+					<td class=""><label >MOTOR BIKE</label></td>
+					<td ><input type="text" name="bk_fuel" value="50" id="bk_fuel" onkeypress="return isNumberKey(event)" /></td>
+					<td >
+						 <input type="text" name="bk_time_hr"  id="bk_time_hr" value="02" class="time_field" onkeypress="return isNumberKey(event)" /> :
+					  	 <input type="text" name="bk_time_min"  id="bk_time_min" value="40" maxlength="2" class="time_field" onkeypress="return isNumberKey(event)" onkeypress="return isNumberKey(event)" onchange="this.value = validateTextNumericInRange(this.name, 0, 59)" /> :
+						 <input type="text" name="bk_time_sec"  id="bk_time_sec" value="00" maxlength="2" class="time_field" onkeypress="return isNumberKey(event)" onchange="this.value = validateTextNumericInRange(this.name, 0, 59)" />
+					</td>					
+				</tr>
+				
+				<tr>
+					<td class=""><label >CAR</label></td>
+					<td ><input type="text" name="cr_fuel" value="24" id="cr_fuel" onkeypress="return isNumberKey(event)" onkeypress="return isNumberKey(event)" /></td>
+					<td >
+						<input type="text" name="cr_time_hr"  id="cr_time_hr" value="02" class="time_field" onkeypress="return isNumberKey(event)" /> :
+						<input type="text" name="cr_time_min"  id="cr_time_min" value="20" maxlength="2" class="time_field" onkeypress="return isNumberKey(event)" onchange="this.value = validateTextNumericInRange(this.name, 0, 59)" /> :
+						<input type="text" name="cr_time_sec"  id="cr_time_sec" value="00" maxlength="2" class="time_field" onkeypress="return isNumberKey(event)" onchange="this.value = validateTextNumericInRange(this.name, 0, 59)" />		
+					</td>					
+				</tr>		
+				</table>				
+			</div>
+			<!--comparison-->
+		</div>	
+		</form>
+		<div style="padding-top:10px;">
+			<div style="">Find Time Taken <a onclick="hidedisplay('calculate-time')" >here</a></div>
+			<div id="calculate-time" style="display:none;">
+				<div class="time-ele">
+					<div style="float:left;">
+						<label>Select Vehicle</label>
+					</div>
+					<div style="float:right;">
+						<select name="vehicle-type" id="vehicle-type" >
+							<option>Cycle</option>
+							<option>Bike</option>
+							<option>Car</option>
+						</select>
+					</div>
+				</div>
+				<div style="clear:both;"></div>
+				<div class="time-ele">				
+					<div style="float:left;" >
+						<label>Speed</label>
+					</div>
+					<div style="float:right;">				
+						<input type="text" id="gen-fuel" name="gen-fuel" class="time_field" onkeypress="return isNumberKey(event)" />
+					</div>
+				</div>
+			</div>
+		</div>		
+			
+		</div>
+		<!--left box ends-->
+		<!--right box starts-->
+		<div id="data-show">
+			<div id="result-page" style="" >
+				<div id="chart_div3" style="width: 500px; height: 200px;"></div>	
+			</div>		
+		</div>
+		<!--right box ends-->
+	</div><?php ?>
+	
+	<div id="charts">
+		<div id="chart_div1" style="float:left;"></div>	
+		<div id="chart_div2" style="float:right;"></div>		
+	</div>
+	<div style="clear:both;"></div>
+	
+</div>
+<!--wrapper ends-->
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script>!window.jQuery && document.write('<script src="js/jquery.min.js"><\/script>')</script>
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script>!window.jQuery && document.write('<script src="js/jsapi.js"><\/script>')</script>
+
+<script type="text/javascript">	
+	
+	//generic code
+	var petrol_price = 80;
+	var diesel_price = 50;
+
+	 google.load("visualization", "1", {packages:["corechart"]});		 
+	//google.setOnLoadCallback(drawChart);
+	$(document).ready(function(){
+		getdata();
+		$("#form1").live("change",function(e){
+			e.preventDefault();
+			getdata();//drawChart();		
+			return false;
+		});
+
+		$("#gen-fuel").live("change",function(e){
+				console.log(this.value);
+		});
+	});
+	
+	//validate number with minimum and maximum range.
+	function validateTextNumericInRange(textInputId, min, max) 
+	{
+		var textInput = document.getElementById(textInputId);		
+		var value = parseInt(textInput.value, 10);		//console.log(value);		
+		if((!isNaN(value) && value >= max)){ value = max;}
+		if((!isNaN(value) && value <= min)){ value = min;}				
+		return value;
+	}
+	
+	//allows only number
+	function isNumberKey(evt)
+	{
+		var charCode = (evt.which) ? evt.which : evnt.keyCode;
+		if(charCode > 31 && (charCode < 48 || charCode > 57 ))
+		{	
+			return false;
+		}	
+		return true;	
+	}
+	
+	function getdata()
+	{
+			var total_distance = parseFloat($("#total_distance").val());
+			
+			var cy_fuel	= parseFloat($("#cy_fuel").val());
+			var bk_fuel	= parseFloat($("#bk_fuel").val());	
+			var cr_fuel	= parseFloat($("#cr_fuel").val());
+			
+			var cy_time_hr	= parseFloat($("#cy_time_hr").val());
+			var bk_time_hr	= parseFloat($("#bk_time_hr").val());
+			var cr_time_hr	= parseFloat($("#cr_time_hr").val());
+			
+			var cy_time_min	= parseFloat($("#cy_time_min").val());
+			var bk_time_min	= parseFloat($("#bk_time_min").val());
+			var cr_time_min	= parseFloat($("#cr_time_min").val());
+			
+			var cy_time_sec	= parseFloat($("#cy_time_sec").val());
+			var bk_time_sec	= parseFloat($("#bk_time_min").val());
+			var cr_time_sec	= parseFloat($("#cr_time_sec").val());
+			
+			
+			//calculate Fuel Cost and generate graph.	
+			//var cy_fuel_cost = fuelcost(total_distance,cy_fuel,petrol_price);	
+			var bk_fuel_cost = fuelcost(total_distance,bk_fuel,petrol_price);
+			var cr_fuel_cost = fuelcost(total_distance,cr_fuel,petrol_price);
+			
+			var fuel_dataArray = [
+				  ['Year', 'Cycle', 'MotorBike','Car'],
+				   ['Per Day',  1,   bk_fuel_cost ,cr_fuel_cost],
+				   ['Per Month',  1,   (30 * bk_fuel_cost) ,(30 * cr_fuel_cost)]
+				   //['Year',  1,   (365 * bk_fuel_cost) ,(365 * cr_fuel_cost)]
+				];	
+			var fuelChart = new google.visualization.ColumnChart(document.getElementById('chart_div1'));
+			drawChart(fuel_dataArray,'Fuel Cost',fuelChart);
+			//fuel chart ends.
+			
+			
+			//calculate speed.
+			var cy_time_seconds = getSeconds(cy_time_hr,'hours') + getSeconds(cy_time_min,'minutes') + cy_time_sec;
+			var bk_time_seconds = getSeconds(bk_time_hr,'hours') + getSeconds(bk_time_min,'minutes') + bk_time_sec;
+			var cr_time_seconds = getSeconds(cr_time_hr,'hours') + getSeconds(cr_time_min,'minutes') + cr_time_sec;
+			
+			var time_saved_seconds = cy_time_seconds - bk_time_seconds;
+			var time_saved = format_time(time_saved_seconds);
+			
+			//time chart starts
+			var timeArray = google.visualization.arrayToDataTable([
+						  ['Task', 'Hours Per Day'],
+						  ['Cycle',     (cy_time_seconds/3600)],
+						  ['Bike',      (bk_time_seconds/3600)],
+						  ['Car',  (cr_time_seconds/3600)]
+						]);
+			var timeChart = new google.visualization.PieChart(document.getElementById('chart_div3'));					
+			drawPieChart(timeArray,'Time Usage in Hours',timeChart);
+			//time chart ends
+			
+			//speed chart starts
+			var bk_average_speed_msc = parseFloat(get_speed(total_distance,bk_time_seconds,'hours'));			
+			var cy_average_speed_msc = parseFloat(get_speed(total_distance,cy_time_seconds,'hours'));	
+			var cr_average_speed_msc = parseFloat(get_speed(total_distance,cr_time_seconds,'hours'));	
+			
+			var speed_dataArray = [
+				  ['Year', 'Cycle', 'MotorBike','Car'],
+				   ['Speed',  cy_average_speed_msc,   bk_average_speed_msc ,cr_average_speed_msc]				   
+				];	
+			var speedChart = new google.visualization.ColumnChart(document.getElementById('chart_div2'));
+			drawChart(speed_dataArray,'Average Speed',speedChart);
+			//speed chart ends.
+			var petrol_carbon = carbonemission(total_distance,bk_fuel,'petrol');
+			var car_carbon = carbonemission(total_distance,cr_fuel,'diesel');
+			
+			console.log('bike carbon: '+petrol_carbon+' kg');
+			console.log('car carbon: '+car_carbon+' kg');
+			var calorie_burned = calorieburner(50,cy_time_seconds,'seconds');
+			console.log('Calorie Burned '+calorie_burned);
+			/*console.log('Bike Avg Speed: '+(bk_average_speed_msc));
+			console.log('Cycle Avg Speed: '+(cy_average_speed_msc));
+			console.log('Car Avg Speed: '+(cr_average_speed_msc));	
+			
+			console.log('cycle = '+cy_time_seconds);			
+			console.log('Bike = '+bk_time_seconds);
+			console.log('Car = '+cr_time_seconds);		
+			console.log('Saved Time = '+time_saved);*/
+	}
+	//draws bargraph
+	function drawChart(dataArray,chart_title,chart)
+	{
+		var data = google.visualization.arrayToDataTable(dataArray);
+			var options = {
+			  title: chart_title,
+			  hAxis: {title: 'Comparison', titleTextStyle: {color: 'red'}}
+		};				
+		chart.draw(data, options);
+	}
+	
+	//draws pie chart
+	function drawPieChart(data,chart_title,chart)//drawPieChart(dataArray,chart_title,chart)
+	{
+        var options = {
+          title: chart_title
+        };
+        chart.draw(data, options);
+	}
+	
+	function fuelcost(totaldistance,efficiency,cost)
+	{
+		return 	((totaldistance / efficiency) * cost );
+	}
+	
+	//calculate calorie
+	function calorieburner(kg,time_data,type)
+	{
+		var hr = time_data;		
+		switch(type)
+		{
+			case 'seconds': hr = time_data / 3600;
+						   break;
+			case 'minutes': hr = time_data / 60;
+						   break;
+			case 'hours':  hr = time_data;
+						   break;				
+		}
+		return Math.round((kg*10)*hr);
+	}
+	
+	
+	//carbon emitted by type of fuel
+	function carbonemission(totaldistance,efficiency,type)
+	{
+		var petrol_fuel_emission = 2.4; //2.4 kg of carbon emitted.
+		var diesel_fuel_emission = 2.7; //2.7 kg of carbon emitted. 
+		var fuel_quantity = (totaldistance / efficiency);
+		console.log(fuel_quantity);
+		switch(type)
+		{
+			case 'petrol': return ( fuel_quantity * petrol_fuel_emission );
+							break;
+			case 'diesel': return ( fuel_quantity * diesel_fuel_emission );
+							break;
+		}
+	}
+	
+	function get_speed(metres,seconds,type)
+	{
+		switch(type)
+		{
+			//gets speed in hours
+			case 'hours': return (metres*1000*3.6) / seconds;
+			
+			//gets speed in minutes
+			case 'minutes': return (metres*1000*0.6) / seconds;
+			
+			//get speed in seconds.
+			case 'seconds': return (metres*1000) / seconds;
+		}
+		
+	}
+	
+	
+	
+	function getSeconds(data,type)
+	{
+		var SecondsRequired = 0;	
+		switch(type)
+		{
+			case 'minutes': SecondsRequired = data * 60;	
+							break;
+			case 'hours'  : SecondsRequired = data * 3600 ;				
+							break;
+			case 'days'   : SecondsRequired = data * 86400 ;
+							break;
+		}
+		return parseFloat(formatDecimal(SecondsRequired,8));
+	}
+	
+	
+	function findtime(total_distance,avg_speed)
+	{	
+			var SecondsRequired = (total_distance * 3600) / avg_speed;			
+			SecondsRequired = parseFloat(formatDecimal(SecondsRequired,8));	
+			return SecondsRequired;
+	}
+	
+	function format_time(SecondsRequired)
+	{
+			var hours, minutes , secs
+			var remainder;
+			hours = fixnan(parseInt(SecondsRequired / 3600)) ;// ''and chuck ayay remainder
+			remainder = fixnan(parseFloat(formatDecimal(SecondsRequired - (hours * 3600.0),4)));
+			minutes = fixnan(parseInt(remainder / 60.0));
+			secs = remainder - (minutes * 60.0);
+			if( secs<= 0.0001 )secs=0;
+			
+			hours=fixnan(hours);
+			minutes=fixnan(minutes);
+			secs=fixnan(parseFloat(secs));
+			sout = parseInt(hours) + " : " + parseInt(minutes) + " : " + formatDecimal(secs, 2);
+			
+			return sout;
+	
+	}
+	
+	function metresPerSec2KMH(mps){  
+		return( mps * 3600 );
+	}
+	
+	function formatDecimal(num, numPlaces)
+	{
+		var snum = new String(parseFloat(num))
+		var i=z=0; 
+		var sout=ch="" 
+		while(i<snum.length && ch != '.' ){
+			ch = snum.charAt(i++)
+			sout+=ch
+		}
+		while(i<snum.length && z++<numPlaces){
+			ch = snum.charAt(i++)
+			sout+=ch
+		}
+		if(snum.indexOf('.')==-1)sout+='.';
+		while(z++<numPlaces)sout+='0';
+		return sout
+	}
+	
+	function fixnan(i)
+	{
+        if(isNaN(i)){
+                return 0
+        }else{
+                return i
+        }
+	}
+
+	//display and show div.
+	function hidedisplay(a){
+		var divele =document.getElementById(a);
+		if(divele.style.display=="none"){
+			document.getElementById(a).style.display="block";
+		}else if(divele.style.display=="block"){
+			document.getElementById(a).style.display="none"; 
+		}
+	}
+	
+</script>
+</body>
+</html>
+

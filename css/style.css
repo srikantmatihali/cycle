@@ -1,0 +1,77 @@
+@charset "utf-8"
+/*css Document*/
+
+*
+{
+	margin:0;
+	padding:0;	
+}
+
+body
+{
+	margin:0;
+	padding:0;	
+}
+#wrapper
+{
+	margin: 0 auto;
+	width:1000px;
+}
+#first-container
+{
+	/*border:1px solid red;*/
+	float:left;
+}
+#data-collect
+{
+	float:left;
+	/*border:1px solid red;*/
+	width: 490px;
+}
+#data-show
+{
+	float:left;
+	/*border:1px solid red;*/
+	width: 500px;
+}
+.vehicle
+{
+	float:left;
+	/*border:1px solid black;*/
+	padding:5px;
+}
+.time_field
+{
+	width:48px;
+	text-align:center;
+}
+
+.leftText
+{
+	width:50%;
+	float:left;
+}
+.rightText
+{
+	width:50%;
+	float:left;
+}
+.tableHeading
+{
+	font-weight:bold;
+	width:
+}
+#chart_div1,#chart_div2
+{
+	width: 400px; 
+	height: 400px;
+}
+#calculate-time
+{
+	background-color:#E5ECF9;
+	width:200px;
+}
+.time-ele
+{
+	background-color:#E5ECF9;
+}

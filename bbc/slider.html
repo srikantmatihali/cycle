@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="http://yui.yahooapis.com/3.6.0/build/yui/yui-min.js"></script>
+		<!-- Slider skin (optional) --> 
+		<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.9.0/build/slider/assets/skins/sam/slider.css">
+		<style>
+			*:focus
+			{
+			    outline: none;
+			}
+
+			#slider-bg {
+			    background:url(images/slider-handel.png) 5px 0 no-repeat;
+			}
+			#slider-thumb {
+			    left: 0;
+			}
+			.slider-handle{
+				background:url(images/slider_handle.png) no-repeat 43% 120%;
+				width:27px;
+				height:27px;
+				top: -8px;
+				margin: 0px;
+			}
+
+			.slider-handle:hover{
+				background:url(images/slider_handle.png) no-repeat 43% 0%;
+				cursor: pointer;
+			}
+			.slider{
+				position: relative;
+				text-align: left;
+				background: #D7D7D7;
+				width:427px;
+				height:8px;
+				border: 1px solid #B6B6B6;
+				-moz-border-radius: 3px;
+				-webkit-border-radius: 3px;
+				border-radius: 3px;
+			}
+			.beep{
+				border: 1px solid #8C5495;
+				-webkit-border-radius: 30px;
+				-moz-border-radius: 30px;
+				border-radius: 30px;
+				height: 18px;
+				width: 18px;
+				-webkit-animation: pulsate 1s ease-out;
+				-webkit-animation-iteration-count: infinite;
+				-moz-animation: pulsate 1s ease-out;
+				-moz-animation-iteration-count: infinite;
+				-ms-animation: pulsate 1s ease-out;
+				-ms-animation-iteration-count: infinite;
+				animation-iteration-count: infinite;
+				animation: pulsate 1s ease-out;
+				opacity: 0;
+				filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+				position: absolute;
+				top: 0px;
+				right: 0px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="wrapper">
+				<div class="text-tip">
+					Slide approximate distance you travel everyday.
+				</div>
+				<!-- Slider HTML component -->
+				<div id="slider-bgs" class="yui-h-slider slider" tabindex="-1" title="Slide for apropriate distance you travel.">
+					<div class="beep"></div>
+				    <div id="slider-thumb" class="yui-slider-thumb slider-handle"></div>
+				    <!--<ul class="seperator">
+				    	<li>0</li>
+				    	<li>0.5</li>
+				    	<li>2</li>
+				    </ul>-->
+				</div>
+				<p>Pixel value: <span id="slider-value">0</span></p>
+
+<p>Converted value:
+<input autocomplete="off" id="slider-converted-value" type="text" value="0" size="4" maxlength="4" />
+</p>
+
+<!--We'll use these to trigger interactions with the Slider API -->
+<button id="putval">Change slider value to 100 (converted value 150)</button>
+<button id="getval">Write current value to the Logger</button>
+				<!-- End Slider Component -->
+				<div id="myLogger"></div>
+		</div>
+		<!-- Dependencies --> 
+		<script src="http://yui.yahooapis.com/2.9.0/build/yahoo-dom-event/yahoo-dom-event.js"></script>
+		<script src="http://yui.yahooapis.com/2.9.0/build/dragdrop/dragdrop-min.js"></script>
+		<!-- Slider source file --> 
+		<script src="http://yui.yahooapis.com/2.9.0/build/slider/slider-min.js"></script>
+		<!-- Main Script -->
+		<script src="boot2.js"></script>
+	</body>
+</html>
